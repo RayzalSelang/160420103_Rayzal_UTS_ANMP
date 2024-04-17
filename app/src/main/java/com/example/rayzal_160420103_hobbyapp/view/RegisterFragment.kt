@@ -43,7 +43,7 @@ class RegisterFragment : Fragment() {
             val password = binding.etPassword.text.toString()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.0.8/api_anmp/") // Use your machine's IP address
+                .baseUrl("http://192.168.0.8/api_anmp/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 

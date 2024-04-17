@@ -48,7 +48,7 @@ class LoginFragment : Fragment() {
 
     private fun login(username: String, password: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.8/api_anmp/") // Use your machine's IP address
+            .baseUrl("http://192.168.0.8/api_anmp/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

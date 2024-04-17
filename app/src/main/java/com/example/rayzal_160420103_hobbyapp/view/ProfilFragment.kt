@@ -81,7 +81,7 @@ class ProfilFragment : Fragment() {
 
     private fun getUserId(): Int {
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getInt("userId", -1) // Return -1 if user ID not found
+        return sharedPreferences.getInt("userId", -1)
     }
 
     override fun onDestroyView() {
