@@ -1,7 +1,5 @@
 package com.example.rayzal_160420103_hobbyapp.view
 
-
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +11,8 @@ import com.example.rayzal_160420103_hobbyapp.R
 import com.example.rayzal_160420103_hobbyapp.databinding.FragmentRegisterBinding
 import com.example.rayzal_160420103_hobbyapp.api.ApiService
 import com.example.rayzal_160420103_hobbyapp.api.RegisterResponse
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +34,14 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.visibility = View.GONE
+
+
+        val navigationView = requireActivity().findViewById<NavigationView>(R.id.navigationView)
+        navigationView.visibility = View.GONE
 
         binding.btnRegister.setOnClickListener {
             val username = binding.etUsername.text.toString()
@@ -86,6 +94,15 @@ class RegisterFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+
+        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.visibility = View.VISIBLE
+
+
+        val navigationView = requireActivity().findViewById<NavigationView>(R.id.navigationView)
+        navigationView.visibility = View.VISIBLE
+
         _binding = null
     }
 }
