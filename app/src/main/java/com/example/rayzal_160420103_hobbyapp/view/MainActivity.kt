@@ -2,6 +2,7 @@ package com.example.rayzal_160420103_hobbyapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +32,19 @@ class MainActivity : AppCompatActivity() {
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setupWithNavController(navController)
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
+                else -> {
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

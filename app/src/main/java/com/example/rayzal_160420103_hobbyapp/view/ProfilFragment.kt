@@ -33,6 +33,11 @@ class ProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (!isUserAuthenticated()) {
+            findNavController().navigate(R.id.action_profilFragment_to_loginFragment)
+            return
+        }
+
         binding.btnSave.setOnClickListener {
             val firstName = binding.etFirstName.text.toString()
             val lastName = binding.etLastName.text.toString()
@@ -42,9 +47,7 @@ class ProfilFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            // Implement logout functionality here
-            // For example, navigate to the login screen
-            findNavController().navigate(R.id.action_profilFragment_to_loginFragment)
+            logout()
         }
     }
 
@@ -79,9 +82,22 @@ class ProfilFragment : Fragment() {
         })
     }
 
+    private fun logout() {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
+        findNavController().navigate(R.id.action_profilFragment_to_loginFragment)
+        findNavController().popBackStack(R.id.main_navigation, true)
+    }
+
     private fun getUserId(): Int {
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         return sharedPreferences.getInt("userId", -1)
+    }
+
+    private fun isUserAuthenticated(): Boolean {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.contains("userId")
     }
 
     override fun onDestroyView() {
