@@ -61,7 +61,7 @@ class LoginFragment : Fragment() {
                     if (loginResponse?.status == "success") {
                         val userId = loginResponse.userId
 
-                        // Save user ID to SharedPreferences
+
                         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
                         sharedPreferences.edit().putInt("userId", userId).apply()
 

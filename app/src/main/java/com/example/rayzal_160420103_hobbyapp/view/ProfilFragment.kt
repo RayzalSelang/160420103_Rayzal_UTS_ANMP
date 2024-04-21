@@ -53,7 +53,7 @@ class ProfilFragment : Fragment() {
 
     private fun updateProfile(firstName: String, lastName: String, password: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.8/api_anmp/") // Use your machine's IP address
+            .baseUrl("http://192.168.0.8/api_anmp/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
