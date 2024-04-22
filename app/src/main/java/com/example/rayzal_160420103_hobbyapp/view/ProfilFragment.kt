@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rayzal_160420103_hobbyapp.R
-import com.example.rayzal_160420103_hobbyapp.api.ApiService
+import com.example.rayzal_160420103_hobbyapp.api.ApiDb
 import com.example.rayzal_160420103_hobbyapp.api.UpdateProfileResponse
 import com.example.rayzal_160420103_hobbyapp.databinding.FragmentProfilBinding
 import retrofit2.Call
@@ -53,12 +53,12 @@ class ProfilFragment : Fragment() {
 
     private fun updateProfile(firstName: String, lastName: String, password: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.8/api_anmp/")
+            .baseUrl("http://192.168.96.76/api_anmp/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.updateProfile(getUserId(), firstName, lastName, password)
+        val apiDb = retrofit.create(ApiDb::class.java)
+        val call = apiDb.updateProfile(getUserId(), firstName, lastName, password)
         call.enqueue(object : Callback<UpdateProfileResponse> {
             override fun onResponse(
                 call: Call<UpdateProfileResponse>,

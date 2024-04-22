@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rayzal_160420103_hobbyapp.R
 import com.example.rayzal_160420103_hobbyapp.databinding.FragmentRegisterBinding
-import com.example.rayzal_160420103_hobbyapp.api.ApiService
+import com.example.rayzal_160420103_hobbyapp.api.ApiDb
 import com.example.rayzal_160420103_hobbyapp.api.RegisterResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -51,12 +51,12 @@ class RegisterFragment : Fragment() {
             val password = binding.etPassword.text.toString()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.0.8/api_anmp/")
+                .baseUrl("http://192.168.96.76/api_anmp/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            val apiService = retrofit.create(ApiService::class.java)
-            val call = apiService.register(username, firstName, lastName, email, password)
+            val apiDb = retrofit.create(ApiDb::class.java)
+            val call = apiDb.register(username, firstName, lastName, email, password)
             call.enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(
                     call: Call<RegisterResponse>,

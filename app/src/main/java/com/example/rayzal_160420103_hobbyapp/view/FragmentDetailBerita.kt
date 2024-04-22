@@ -29,6 +29,7 @@ class FragmentDetailBerita : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         news = arguments?.getParcelable("news") ?: News("", "", "", "",emptyList())
 
         binding.tvTitle.text = news.title
